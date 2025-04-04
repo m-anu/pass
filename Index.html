@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Manager</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Libraries included via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script> <!-- QR Code generation -->
+    <script src="https://cdn.jsdelivr.net/npm/otplib/otplib-browser.min.js"></script> <!-- TOTP Authentication -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script> <!-- AES Encryption -->
+    <script src="sql-wasm.js"></script> <!-- SQLite WebAssembly library -->
+
+    <!-- Custom Scripts -->
+    <script src="AES256.js"></script> <!-- AES encryption logic -->
+    <script src="main.js"></script> <!-- Main application logic -->
+</head>
+<body>
+    <header>
+        <h1>Password Manager</h1>
+        <button id="logout-btn" class="hidden">Log Out</button>
+    </header>
+    <main>
+        <!-- Login Section -->
+        <section id="login-screen">
+            <h2>Login</h2>
+            <form id="login-form">
+                <label for="master-password">Master Password:</label>
+                <input type="password" id="master-password" required>
+                <label for="totp-code">2FA Code:</label>
+                <input type="text" id="totp-code" required>
+                <button type="submit">Login</button>
+            </form>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="hidden">
+            <h2>Password Dashboard</h2>
+            <button id="add-password-btn">Add Password</button>
+            <button id="find-password-btn">Find Password</button>
+            <button id="delete-password-btn">Delete Password</button>
+            <button id="update-password-btn">Update Password</button>
+            <table id="password-table">
+                <thead>
+                    <tr>
+                        <th>Application</th>
+                        <th>Password</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Passwords will be dynamically added here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>
